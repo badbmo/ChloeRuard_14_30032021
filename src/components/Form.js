@@ -64,7 +64,7 @@ function Form() {
 				<select name="department" id="department">
 					{createOptionsDepartment()}
 				</select>
-				<button>Save</button>
+				<button className="form__button">Save</button>
 			</form>
 		</main>
 	);

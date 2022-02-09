@@ -7,12 +7,33 @@
 }
 
 .form__title {
-	color: #596e07;
+	color: #6e8510;
 	font-size: 1.5rem;
 	margin-bottom: 2rem;
 }
 
-.form__employee{
+.form__employee {
 	display: flex;
 	flex-direction: column;
+	max-width: 50%;
+}
+
+.form__employee label {
+	margin: 1rem 0;
+}
+
+.form__employee input {
+	margin: 1rem 0;
+}
+
+.form__button {
+	cursor: pointer;
+	width: 5rem;
+	padding: 8px;
+	font-size: 1.1rem;
+	margin-top: 1rem;
+	border-color: #93ad18;
+	background-color: #93ad18;
+	color: #fff;
+	border-radius: 4px;
 }

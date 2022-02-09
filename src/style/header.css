@@ -31,6 +31,7 @@
 	display: flex;
 	width: 100%;
 	font-size: 1.5rem;
+	gap: 1rem;
 }
 
 .nav__option{
@@ -42,9 +43,11 @@
 }
 
 .nav__option:hover{
-	color: #6e8510;
+	background-color: #93ad18;
+	color: white;
 }
 
 .nav .active{
-	color: #6e8510;
+	background-color: #93ad18;
+	color: white;
 }

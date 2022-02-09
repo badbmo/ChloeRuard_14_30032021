@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
-import "../style/header.css"
+import "../style/header.css";
 
 /**
  * Header Component with Nav
@@ -16,11 +16,11 @@ function Header() {
 				<h1 className="header__title">HRnet</h1>
 			</Link>
 			<nav className="nav">
-				<NavLink exact className="nav__option" to="/employee-list">
-					View Current Employees
-				</NavLink>
 				<NavLink exact className="nav__option" to="/">
 					Home
+				</NavLink>
+				<NavLink exact className="nav__option" to="/employee-list">
+					View Current Employees
 				</NavLink>
 			</nav>
 		</header>
