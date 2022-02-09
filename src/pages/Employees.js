@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../components/Header";
 
 /**
  * Employees Page to display employees list
@@ -8,8 +9,8 @@ import React from "react";
 function Employees() {
 	return (
 		<React.Fragment>
-			<main>
-			</main>
+			<Header />
+			
 		</React.Fragment>
 	);
 }
