@@ -2,6 +2,7 @@ import React from "react";
 import "../style/form.css";
 import { departmentList } from "../utils/const/departmentList";
 import { stateList } from "../utils/const/stateList";
+import Dropdown from "./Dropdown";
 
 /**
  * Form Component to create employee
@@ -9,17 +10,6 @@ import { stateList } from "../utils/const/stateList";
  */
 
 function Form() {
-	const createOptionsDepartment = () => {
-		return departmentList.map((department, index) => {
-			return <option key={index}>{department}</option>;
-		});
-	};
-
-	const createOptionsState = () => {
-		return stateList.map((state, index) => {
-			return <option key={index}>{state.name}</option>;
-		});
-	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -51,19 +41,14 @@ function Form() {
 					<label htmlFor="city">City</label>
 					<input id="city" type="text" />
 
-					<label htmlFor="state">State</label>
-					<select name="state" id="state">
-						{createOptionsState()}
-					</select>
+					<Dropdown label="State" name="state" list={stateList}/>
 
 					<label htmlFor="zip-code">Zip Code</label>
 					<input id="zip-code" type="number" />
 				</fieldset>
 
-				<label htmlFor="department">Department</label>
-				<select name="department" id="department">
-					{createOptionsDepartment()}
-				</select>
+				<Dropdown label="Department" name="department" list={departmentList}/>
+
 				<button className="form__button">Save</button>
 			</form>
 		</main>
