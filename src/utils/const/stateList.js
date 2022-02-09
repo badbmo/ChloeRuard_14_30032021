@@ -1,4 +1,4 @@
-export const usersList = [
+export const stateList = [
 	{
 		name: "Alabama",
 		abbreviation: "AL",
