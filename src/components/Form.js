@@ -3,6 +3,7 @@ import "../style/form.css";
 import { departmentList } from "../utils/const/departmentList";
 import { stateList } from "../utils/const/stateList";
 import Dropdown from "./Dropdown";
+import Input from "./Input";
 
 /**
  * Form Component to create employee
@@ -19,32 +20,24 @@ function Form() {
 	return (
 		<main className="main__form">
 			<h2 className="form__title">Create Employee</h2>
+
 			<form className="form__employee" onSubmit={handleSubmit}>
-				<label htmlFor="first-name">First Name</label>
-				<input type="text" id="first-name" />
 
-				<label htmlFor="last-name">Last Name</label>
-				<input type="text" id="last-name" />
-
-				<label htmlFor="date-of-birth">Date of Birth</label>
-				<input id="date-of-birth" type="text" />
-
-				<label htmlFor="start-date">Start Date</label>
-				<input id="start-date" type="text" />
+				<Input label="First Name" id="first-name" type="text"/>
+				<Input label="Last Name" id="last-name" type="text"/>
+				<Input label="Date of Birth" id="date-of-birth" type="text"/>
+				<Input label="Start Date" id="start-date" type="text"/>
 
 				<fieldset className="form__address">
 					<legend className="address__legend">Address</legend>
 
-					<label htmlFor="street">Street</label>
-					<input id="street" type="text" />
-
-					<label htmlFor="city">City</label>
-					<input id="city" type="text" />
+					<Input label="Street" id="street" type="text"/>
+					<Input label="City" id="city" type="text"/>
 
 					<Dropdown label="State" name="state" list={stateList}/>
+					
+					<Input label="Zip Code" id="zip-code" type="number"/>
 
-					<label htmlFor="zip-code">Zip Code</label>
-					<input id="zip-code" type="number" />
 				</fieldset>
 
 				<Dropdown label="Department" name="department" list={departmentList}/>
