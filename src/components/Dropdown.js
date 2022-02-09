@@ -5,10 +5,13 @@ import React from "react";
  * @param {string} label name of label
  * @param {string} name name of select and htmlFor of label
  * @param {Object[]} list array of objects
+ * @param {function} setInput function to get what is put in input
+ * @param {string} value value of what is put in input
+
  * @returns {JSX} React component
  */
 
-function Dropdown({label, name, list}) {
+function Dropdown({label, name, list, value, setInput}) {
 
 	const createOptionsState = () => {
 		return list.map((item, index) => {
@@ -19,7 +22,7 @@ function Dropdown({label, name, list}) {
 	return (
 		<React.Fragment>
 			<label htmlFor={name}>{label}</label>
-			<select id={name} name={name}>
+			<select id={name} name={name} value={value} onChange={(e) => setInput(e.target.value)}>
 				{createOptionsState()}
 			</select>
 		</React.Fragment>
