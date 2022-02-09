@@ -8,32 +8,61 @@
 
 .form__title {
 	color: #6e8510;
-	font-size: 1.5rem;
+	font-size: 2rem;
 	margin-bottom: 2rem;
 }
 
 .form__employee {
 	display: flex;
 	flex-direction: column;
-	max-width: 50%;
+	min-width: 50%;
 }
 
 .form__employee label {
-	margin: 1rem 0;
+	margin: 0.5rem 0;
+	font-weight: 500;
 }
 
 .form__employee input {
-	margin: 1rem 0;
+	margin: 0.5rem 0;
+	border: 1px solid lightgray;
+	padding: 0.5rem;
+	border-radius: 4px;
+}
+
+.form__employee input:focus {
+	background-color: #f8f8fa;
+	outline: solid 1px lightgray ;
+}
+
+.form__employee select {
+	margin: 0.5rem 0;
+	border: 1px solid lightgray;
+	padding: 0.5rem;
+	border-radius: 4px;
+}
+
+.form__address{
+	display: flex;
+	flex-direction: column;
+	margin: 0.5rem 0;
+	border: 1px solid lightgray;
+	padding: 1rem;
+}
+
+.address__legend{
+	padding: 0.5rem;
 }
 
 .form__button {
 	cursor: pointer;
-	width: 5rem;
-	padding: 8px;
-	font-size: 1.1rem;
+	min-width: 10rem;
+	padding: 1rem;
+	font-size: 1.2rem;
 	margin-top: 1rem;
 	border-color: #93ad18;
 	background-color: #93ad18;
 	color: #fff;
 	border-radius: 4px;
+	align-self: center;
 }

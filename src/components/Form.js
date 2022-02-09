@@ -43,7 +43,7 @@ function Form() {
 				<input id="start-date" type="text" />
 
 				<fieldset className="form__address">
-					<legend>Address</legend>
+					<legend className="address__legend">Address</legend>
 
 					<label htmlFor="street">Street</label>
 					<input id="street" type="text" />
