@@ -1,0 +1,25 @@
+.search{
+	align-self: flex-end;
+}
+
+.search__label {
+	padding: 0.5rem;
+}
+.search__input {
+	border: none;
+	background-color: transparent;
+	font-family: inherit;
+	text-overflow: ellipsis;
+	border: 1px solid lightgray;
+	padding: 0.5rem;
+	border-radius: 4px;
+}
+
+.search__input::placeholder {
+	opacity: 25%;
+}
+
+.search__input:focus {
+	background-color: #f8f8fa;
+	outline: solid 1px lightgray;
+}

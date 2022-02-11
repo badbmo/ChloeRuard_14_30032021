@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/table.css";
+import Search from "./Search";
 
 /**
  * Table Component to display current employees
@@ -9,7 +10,11 @@ import "../style/table.css";
 function Table() {
 	const tableHead = (list) => {
 		return list.map((item, index) => {
-			return <th className={"head__cell cell-"+index} key={index}>{item}</th>;
+			return (
+				<th className={"head__cell cell-" + index} key={index}>
+					{item}
+				</th>
+			);
 		});
 	};
 
@@ -73,13 +78,18 @@ function Table() {
 	return (
 		<main className="main__table">
 			<h2 className="table__title">Current Employees</h2>
-
+			<section className="topSection__table">
+				<div></div>
+				<Search />
+			</section>
 			<table className="table">
-				<thead >
+				<thead>
 					<tr className="table__head">{tableHead(headData)}</tr>
 				</thead>
 				<tbody>{tableBody(bodyData)}</tbody>
 			</table>
+			<section className="bottomSection__table">
+			</section>
 		</main>
 	);
 }
