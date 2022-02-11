@@ -4,6 +4,7 @@ import { departmentList } from "../utils/const/departmentList";
 import { stateList } from "../utils/const/stateList";
 import Dropdown from "./Dropdown";
 import Input from "./Input";
+import Modal from "./Modal";
 import { useState } from "react";
 
 /**
@@ -21,15 +22,22 @@ function Form() {
 	const [state, setState] = useState(stateList[0].name);
 	const [zipCode, setZipCode] = useState("");
 	const [department, setDepartment] = useState(departmentList[0].name);
+	const [modal, setModal] = useState(false);
 
 	const employee = { firstName, lastName, birthDate, startDate, street, city, state, zipCode, department };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("Employee Created!", employee);
+		handleModal();
+	};
+
+	const handleModal = () => {
+		setModal(!modal);
 	};
 
 	return (
+
 		<main className="main__form">
 			<h2 className="form__title">Create Employee</h2>
 
@@ -54,6 +62,7 @@ function Form() {
 
 				<button className="form__button">Save</button>
 			</form>
+			{modal ? <Modal text="Employee created !" handleModal={handleModal}/> : ""}
 		</main>
 	);
 }
