@@ -1,0 +1,50 @@
+.main__table {
+	margin: 2rem 0;
+	padding: 0 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.table {
+	width: 100%;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.table__title {
+	color: #6e8510;
+	font-size: 2rem;
+	margin-bottom: 2rem;
+}
+
+.table__head {
+	background-color: #6e8510;
+	color: white;
+	text-align: left;
+}
+
+.head__cell {
+	padding: 1rem 0;
+	padding-right: 0.5rem;
+}
+
+.table__row {
+	background-color: white;
+	color: #666;
+}
+
+.table__row:hover {
+	background-color: #ececff;
+	cursor: pointer;
+}
+
+.row__cell {
+	padding: 1rem 0;
+	padding-right: 0.5rem;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.cell-0 {
+	padding-left: 1rem;
+}
