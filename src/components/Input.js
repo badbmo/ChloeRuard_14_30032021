@@ -14,7 +14,7 @@ function Input({ label, id, type, value, setInput }) {
 	return (
 		<React.Fragment>
 			<label htmlFor={id}>{label}</label>
-			<input id={id} type={type} value={value} onChange={(e) => setInput(e.target.value)}/>
+			<input id={id} type={type} value={value} onChange={(e) => setInput(e.target.value)} />
 		</React.Fragment>
 	);
 }

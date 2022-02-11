@@ -11,7 +11,7 @@ function Home() {
 	return (
 		<React.Fragment>
 			<Header />
-				<Form />
+			<Form />
 		</React.Fragment>
 	);
 }

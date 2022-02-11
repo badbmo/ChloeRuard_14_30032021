@@ -9,8 +9,10 @@ import "../style/modal.css";
 function Modal({ text, handleModal }) {
 	return (
 		<div className="modal__background" onClick={handleModal}>
-			<div className="modal__box" onClick={e => e.stopPropagation()}>
-				<button className="modal__button" onClick={handleModal}>X</button>
+			<div className="modal__box" onClick={(e) => e.stopPropagation()}>
+				<button className="modal__button" onClick={handleModal}>
+					X
+				</button>
 				<p className="modal__text">{text}</p>
 			</div>
 		</div>

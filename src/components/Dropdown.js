@@ -11,8 +11,7 @@ import React from "react";
  * @returns {JSX} React component
  */
 
-function Dropdown({label, name, list, value, setInput}) {
-
+function Dropdown({ label, name, list, value, setInput }) {
 	const createOptionsState = () => {
 		return list.map((item, index) => {
 			return <option key={index}>{item.name}</option>;
