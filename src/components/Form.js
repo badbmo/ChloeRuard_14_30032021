@@ -24,20 +24,39 @@ function Form() {
 	const [department, setDepartment] = useState(departmentList[0].name);
 	const [modal, setModal] = useState(false);
 
-	const employee = { firstName, lastName, birthDate, startDate, street, city, state, zipCode, department };
+	const getStateAbbreviation = () => {
+		const selectedState = stateList.find((element) => element.name === state);
+		return selectedState.abbreviation;
+	};
+
+	const stateShort = getStateAbbreviation();
+
+	const employee = { firstName, lastName, birthDate, startDate, street, city, state, stateShort, zipCode, department };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("Employee Created!", employee);
 		handleModal();
+		refreshForm();
 	};
 
 	const handleModal = () => {
 		setModal(!modal);
 	};
 
-	return (
+	const refreshForm = () => {
+		setFirstName("");
+		setLastName("");
+		setBirthDate("");
+		setStartDate("");
+		setStreet("");
+		setCity("");
+		setState(stateList[0].name);
+		setZipCode("");
+		setDepartment(departmentList[0].name);
+	};
 
+	return (
 		<main className="main__form">
 			<h2 className="form__title">Create Employee</h2>
 
@@ -62,7 +81,7 @@ function Form() {
 
 				<button className="form__button">Save</button>
 			</form>
-			{modal ? <Modal text="Employee created !" handleModal={handleModal}/> : ""}
+			{modal ? <Modal text="Employee created !" handleModal={handleModal} /> : ""}
 		</main>
 	);
 }
