@@ -1,0 +1,20 @@
+.pagination__button{
+	cursor: pointer;
+	min-width: 5rem;
+	padding: 0.5rem;
+	font-size: 1rem;
+	border-color: #93ad18;
+	background-color: #93ad18;
+	color: #fff;
+	border-radius: 4px;
+	align-self: center;
+}
+
+.pagination__button:hover{
+	background-color: #6e8510;
+	border-color: #6e8510;
+}
+
+.pagination__button-disabled{
+	display: none;
+}
