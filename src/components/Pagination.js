@@ -6,7 +6,6 @@ import "../style/pagination.css";
  */
 
 function Pagination({ dataLength, pageSize, currentPage, setCurrentPage }) {
-	
 	//ceil to ensure we are reserving an extra page for remaining data
 	const totalPages = Math.ceil(dataLength / pageSize);
 
@@ -40,9 +39,11 @@ function Pagination({ dataLength, pageSize, currentPage, setCurrentPage }) {
 	};
 
 	return (
-		<div>
+		<div className="pagination">
 			{renderButtonPrevious()}
-			{currentPage}/{totalPages}
+			<div className="pagination__pages">
+				{currentPage}/{totalPages}
+			</div>
 			{renderButtonNext()}
 		</div>
 	);
