@@ -2,7 +2,7 @@ import React from "react";
 import "../style/search.css";
 
 /**
- * Employees Page to display employees list
+ * Search component
  * @returns {JSX} React component
  */
 

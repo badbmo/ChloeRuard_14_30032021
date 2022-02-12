@@ -41,6 +41,7 @@
 	text-align: center;
 	padding: 1rem;
 	color: black;
+	border-radius: 5px 5px 0 0;
 }
 
 .nav__option:hover {

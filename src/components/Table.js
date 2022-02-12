@@ -1,6 +1,10 @@
 import React from "react";
 import "../style/table.css";
 import Search from "./Search";
+import { tableHeadData } from "../utils/const/tableHeadData";
+import Dropdown from "./Dropdown";
+import { useState } from "react";
+import Pagination from "./Pagination";
 
 /**
  * Table Component to display current employees
@@ -8,6 +12,8 @@ import Search from "./Search";
  */
 
 function Table() {
+	const [entry, setEntry] = useState("");
+
 	const tableHead = (list) => {
 		return list.map((item, index) => {
 			return (
@@ -17,18 +23,6 @@ function Table() {
 			);
 		});
 	};
-
-	const headData = [
-		"First Name",
-		"Last Name",
-		"Start Date",
-		"Department",
-		"Date of Birth",
-		"Street",
-		"City",
-		"State",
-		"Zip Code",
-	];
 
 	// const dataOrder = ["firstName", "lastName", "startDate", "department", "birthDate", "street", "city", "stateShort", ]
 
@@ -75,20 +69,27 @@ function Table() {
 		},
 	];
 
+	const entriesValue = [{ name: 10 }, { name: 25 }, { name: 50 }, { name: 100 }];
+
 	return (
 		<main className="main__table">
 			<h2 className="table__title">Current Employees</h2>
 			<section className="topSection__table">
-				<div></div>
+				<div className="entry">
+					<Dropdown label="Show" name="entries" value={entry} list={entriesValue} setInput={setEntry} />
+					entries
+				</div>
 				<Search />
 			</section>
 			<table className="table">
 				<thead>
-					<tr className="table__head">{tableHead(headData)}</tr>
+					<tr className="table__head">{tableHead(tableHeadData)}</tr>
 				</thead>
 				<tbody>{tableBody(bodyData)}</tbody>
 			</table>
 			<section className="bottomSection__table">
+				<div>Showing 1 to 2 of 2 entries</div>
+				<Pagination />
 			</section>
 		</main>
 	);

@@ -19,7 +19,7 @@
 }
 
 .table__head {
-	background-color: #6e8510;
+	background-color: #93ad18;
 	color: white;
 	text-align: left;
 }
@@ -56,4 +56,13 @@
 	display: flex;
 	justify-content: space-between;
 	margin: 2rem 0;
+}
+
+/*Entries*/
+
+.entry select{
+	border: 1px solid lightgray;
+	padding: 0.5rem;
+	border-radius: 4px;
+	margin: 0 0.5rem;
 }
