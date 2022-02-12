@@ -51,7 +51,7 @@
 
 /* Mise en page page*/
 
-.topSection__table {
+.topSection__table, .bottomSection__table {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;

@@ -1,10 +1,13 @@
 import React from "react";
 import "../style/table.css";
-import Search from "./Search";
-import { tableHeadData } from "../utils/const/tableHeadData";
-import Dropdown from "./Dropdown";
 import { useState } from "react";
+import Search from "./Search";
+import Dropdown from "./Dropdown";
 import Pagination from "./Pagination";
+import { tableHeadData } from "../utils/const/tableHeadData";
+import { bodyData } from "../utils/const/mockedData";
+import { entriesValue } from "../utils/const/entriesValue";
+
 
 /**
  * Table Component to display current employees
@@ -12,7 +15,19 @@ import Pagination from "./Pagination";
  */
 
 function Table() {
-	const [entry, setEntry] = useState("");
+	const [entry, setEntry] = useState(10);
+	//entry = itemsperpage
+
+	// const [sortedData, setsortedData] = useState("");
+	const [currentPage, setCurrentPage] = useState(1);
+
+	const totalDataLength = bodyData.length;
+	const startItem = (currentPage - 1) * entry;
+	const endItem = currentPage * entry;
+	const displayedData = bodyData.slice(startItem, endItem);
+	const displayedDataLength = displayedData.length;
+	const firstDisplayedData = startItem+1
+	const lastDisplayedData = bodyData.indexOf(displayedData[displayedDataLength-1])+1;
 
 	const tableHead = (list) => {
 		return list.map((item, index) => {
@@ -25,7 +40,6 @@ function Table() {
 	};
 
 	// const dataOrder = ["firstName", "lastName", "startDate", "department", "birthDate", "street", "city", "stateShort", ]
-
 	const tableBody = (data) => {
 		return data.map((item, index) => (
 			<tr key={index} className="table__row">
@@ -42,35 +56,6 @@ function Table() {
 		));
 	};
 
-	const bodyData = [
-		{
-			firstName: "chloe",
-			lastName: "ruard",
-			birthDate: "12/12/12",
-			startDate: "01/02/03",
-			street: "street",
-			city: "city",
-			state: "Florida",
-			stateShort: "FL",
-			zipCode: "3873985",
-			department: "Human Resources",
-		},
-		{
-			firstName: "chloe2",
-			lastName: "ruard2",
-			birthDate: "12/12/12",
-			startDate: "01/02/03",
-			street: "street",
-			city: "city",
-			state: "Florida",
-			stateShort: "FL",
-			zipCode: "3873985",
-			department: "Human Resources",
-		},
-	];
-
-	const entriesValue = [{ name: 10 }, { name: 25 }, { name: 50 }, { name: 100 }];
-
 	return (
 		<main className="main__table">
 			<h2 className="table__title">Current Employees</h2>
@@ -85,11 +70,11 @@ function Table() {
 				<thead>
 					<tr className="table__head">{tableHead(tableHeadData)}</tr>
 				</thead>
-				<tbody>{tableBody(bodyData)}</tbody>
+				<tbody>{tableBody(displayedData)}</tbody>
 			</table>
 			<section className="bottomSection__table">
-				<div>Showing 1 to 2 of 2 entries</div>
-				<Pagination />
+				<div>Showing {firstDisplayedData} to {lastDisplayedData} of {totalDataLength} entries</div>
+				<Pagination dataLength={totalDataLength} pageSize={entry} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
 			</section>
 		</main>
 	);
