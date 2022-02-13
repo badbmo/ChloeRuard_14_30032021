@@ -8,7 +8,6 @@ import { tableHeadData } from "../utils/const/tableHeadData";
 import { bodyData } from "../utils/const/mockedData";
 import { entriesValue } from "../utils/const/entriesValue";
 
-
 /**
  * Table Component to display current employees
  * @returns {JSX} React component
@@ -18,16 +17,24 @@ function Table() {
 	const [entry, setEntry] = useState(10);
 	//entry = itemsperpage
 
-	// const [sortedData, setsortedData] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
+	const [query, setQuery] = useState("");
+
+	console.log(query);
+	const sortedData = bodyData.filter((object) => {
+		return Object.keys(object).some(k =>object[k].toLowerCase().includes(query.toLowerCase().trim()));
+	});
+	const sortedDataLength= sortedData.length;
 
 	const totalDataLength = bodyData.length;
 	const startItem = (currentPage - 1) * entry;
 	const endItem = currentPage * entry;
-	const displayedData = bodyData.slice(startItem, endItem);
+	const displayedData = sortedData.slice(startItem, endItem);
 	const displayedDataLength = displayedData.length;
-	const firstDisplayedData = startItem+1
-	const lastDisplayedData = bodyData.indexOf(displayedData[displayedDataLength-1])+1;
+	const firstDisplayedData = sortedDataLength === 0 ? 0 : startItem + 1;
+	const lastDisplayedData = sortedData.indexOf(displayedData[displayedDataLength - 1]) + 1;
+
+
 
 	const tableHead = (list) => {
 		return list.map((item, index) => {
@@ -41,6 +48,16 @@ function Table() {
 
 	// const dataOrder = ["firstName", "lastName", "startDate", "department", "birthDate", "street", "city", "stateShort", ]
 	const tableBody = (data) => {
+		if(totalDataLength === 0){
+			return	<div className="error__noData">
+					You are a company with no employee
+				</div>
+			}
+		if(sortedDataLength === 0){
+		return	<div className="error__noData">
+				No match found, sorry !
+			</div>
+		}
 		return data.map((item, index) => (
 			<tr key={index} className="table__row">
 				<td className="row__cell cell-0">{item.firstName}</td>
@@ -64,7 +81,7 @@ function Table() {
 					<Dropdown label="Show" name="entries" value={entry} list={entriesValue} setInput={setEntry} />
 					entries
 				</div>
-				<Search />
+				<Search value={query} setQuery={setQuery} />
 			</section>
 			<table className="table">
 				<thead>
@@ -73,8 +90,15 @@ function Table() {
 				<tbody>{tableBody(displayedData)}</tbody>
 			</table>
 			<section className="bottomSection__table">
-				<div>Showing {firstDisplayedData} to {lastDisplayedData} of {totalDataLength} entries</div>
-				<Pagination dataLength={totalDataLength} pageSize={entry} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+				<div>
+					Showing {firstDisplayedData} to {lastDisplayedData} of {sortedDataLength} entries
+				</div>
+				<Pagination
+					dataLength={sortedDataLength}
+					pageSize={entry}
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
+				/>
 			</section>
 		</main>
 	);
