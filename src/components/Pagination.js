@@ -7,7 +7,11 @@ import "../style/pagination.css";
 
 function Pagination({ dataLength, pageSize, currentPage, setCurrentPage }) {
 	//ceil to ensure we are reserving an extra page for remaining data
-	const totalPages = Math.ceil(dataLength / pageSize);
+	const totalPages = dataLength === 0 ? Math.ceil(1 / pageSize) : Math.ceil(dataLength / pageSize);
+
+	if (totalPages === 1) {
+		setCurrentPage(1);
+	}
 
 	const onPreviousPage = () => {
 		setCurrentPage(currentPage - 1);
