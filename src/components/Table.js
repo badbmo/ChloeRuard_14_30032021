@@ -17,28 +17,60 @@ function Table() {
 	const [itemsperpage, setItemsPerPage] = useState(10);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [query, setQuery] = useState("");
+	const [sortedField, setSortedField] = useState(null);
+	console.log(sortedField);
+
+	const sortingData = () => {
+		if (sortedField !== null) {
+			filteredData.sort((a, b) => {
+				if (a[sortedField.name] < b[sortedField.name]) {
+					return sortedField.direction === "ascending" ? -1 : 1;
+				}
+				if (a[sortedField.name] > b[sortedField.name]) {
+					return sortedField.direction === "ascending" ? -1 : 1;
+				}
+				return 0;
+			});
+		}
+	};
 
 	//filter totalData (array of object)
 	//Object.keys(object) get all the keys of one object as an array
 	//k as keys string to iterate on object: object["firstName"], object["lastName"] ...
-	const sortedData = bodyData.filter((object) => {
-		console.log(object["firstName"]);
+	const filteredData = bodyData.filter((object) => {
 		return Object.keys(object).some((k) => object[k].toLowerCase().includes(query.toLowerCase().trim()));
 	});
-	const sortedDataLength = sortedData.length;
+	sortingData();
+
+	const filteredDataLength = filteredData.length;
 	const totalDataLength = bodyData.length;
 	const startItem = (currentPage - 1) * itemsperpage;
 	const endItem = currentPage * itemsperpage;
-	const displayedData = sortedData.slice(startItem, endItem);
+	const displayedData = filteredData.slice(startItem, endItem);
 	const displayedDataLength = displayedData.length;
-	const firstDisplayedData = sortedDataLength === 0 ? 0 : startItem + 1;
-	const lastDisplayedData = sortedData.indexOf(displayedData[displayedDataLength - 1]) + 1;
+	const firstDisplayedData = filteredDataLength === 0 ? 0 : startItem + 1;
+	const lastDisplayedData = filteredData.indexOf(displayedData[displayedDataLength - 1]) + 1;
+
+	const requestSort = (headCellClicked) => {
+		let direction = "ascending";
+		if (sortedField && sortedField.name === headCellClicked && sortedField.direction === "ascending") {
+			direction = "descending";
+		}
+		setSortedField({ name: headCellClicked, direction });
+	};
+
+	const getDirection = (headCell) => {
+		if (sortedField === null) {
+			return ' sorting';
+		}
+		return headCell === sortedField.name ? " sorting-" + sortedField.direction : " sorting";
+	};
 
 	const tableHead = (list) => {
 		return list.map((item, index) => {
 			return (
-				<th className={"head__cell cell-" + index} key={index}>
-					{item}
+				<th className={"head__cell cell-" + index + getDirection(item.id)} key={index} onClick={() => requestSort(item.id)}>
+					{item.name}
 				</th>
 			);
 		});
@@ -55,7 +87,7 @@ function Table() {
 				</tr>
 			);
 		}
-		if (sortedDataLength === 0) {
+		if (filteredDataLength === 0) {
 			return (
 				<tr className="error__noData table__row">
 					<td className="row__cell" colspan="9">
@@ -64,6 +96,7 @@ function Table() {
 				</tr>
 			);
 		}
+
 		return data.map((item, index) => (
 			<tr key={index} className="table__row">
 				<td className="row__cell cell-0">{item.firstName}</td>
@@ -97,10 +130,10 @@ function Table() {
 			</table>
 			<section className="bottomSection__table">
 				<div>
-					Showing {firstDisplayedData} to {lastDisplayedData} of {sortedDataLength} entries
+					Showing {firstDisplayedData} to {lastDisplayedData} of {filteredDataLength} entries
 				</div>
 				<Pagination
-					dataLength={sortedDataLength}
+					dataLength={filteredDataLength}
 					pageSize={itemsperpage}
 					currentPage={currentPage}
 					setCurrentPage={setCurrentPage}
