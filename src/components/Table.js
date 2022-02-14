@@ -47,10 +47,22 @@ function Table() {
 	// const dataOrder = ["firstName", "lastName", "startDate", "department", "birthDate", "street", "city", "stateShort", ]
 	const tableBody = (data) => {
 		if (totalDataLength === 0) {
-			return <div className="error__noData">You are a company with no employee</div>;
+			return (
+				<tr className="error__noData table__row">
+					<td className="row__cell" colspan="9">
+						You are a company with no employee
+					</td>
+				</tr>
+			);
 		}
 		if (sortedDataLength === 0) {
-			return <div className="error__noData">No match found, sorry !</div>;
+			return (
+				<tr className="error__noData table__row">
+					<td className="row__cell" colspan="9">
+						No match found, sorry !
+					</td>
+				</tr>
+			);
 		}
 		return data.map((item, index) => (
 			<tr key={index} className="table__row">

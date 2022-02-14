@@ -51,7 +51,8 @@
 
 /* Mise en page page*/
 
-.topSection__table, .bottomSection__table {
+.topSection__table,
+.bottomSection__table {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -60,9 +61,14 @@
 
 /*Entries*/
 
-.entry select{
+.entry select {
 	border: 1px solid lightgray;
 	padding: 0.5rem;
 	border-radius: 4px;
 	margin: 0 0.5rem;
+}
+
+/*Error messages*/
+.error__noData {
+	text-align: center;
 }
