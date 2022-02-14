@@ -14,27 +14,25 @@ import { entriesValue } from "../utils/const/entriesValue";
  */
 
 function Table() {
-	const [entry, setEntry] = useState(10);
-	//entry = itemsperpage
-
+	const [itemsperpage, setItemsPerPage] = useState(10);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [query, setQuery] = useState("");
 
-	console.log(query);
+	//filter totalData (array of object)
+	//Object.keys(object) get all the keys of one object as an array
+	//k as keys string to iterate on object: object["firstName"], object["lastName"] ...
 	const sortedData = bodyData.filter((object) => {
-		return Object.keys(object).some(k =>object[k].toLowerCase().includes(query.toLowerCase().trim()));
+		console.log(object["firstName"]);
+		return Object.keys(object).some((k) => object[k].toLowerCase().includes(query.toLowerCase().trim()));
 	});
-	const sortedDataLength= sortedData.length;
-
+	const sortedDataLength = sortedData.length;
 	const totalDataLength = bodyData.length;
-	const startItem = (currentPage - 1) * entry;
-	const endItem = currentPage * entry;
+	const startItem = (currentPage - 1) * itemsperpage;
+	const endItem = currentPage * itemsperpage;
 	const displayedData = sortedData.slice(startItem, endItem);
 	const displayedDataLength = displayedData.length;
 	const firstDisplayedData = sortedDataLength === 0 ? 0 : startItem + 1;
 	const lastDisplayedData = sortedData.indexOf(displayedData[displayedDataLength - 1]) + 1;
-
-
 
 	const tableHead = (list) => {
 		return list.map((item, index) => {
@@ -48,15 +46,11 @@ function Table() {
 
 	// const dataOrder = ["firstName", "lastName", "startDate", "department", "birthDate", "street", "city", "stateShort", ]
 	const tableBody = (data) => {
-		if(totalDataLength === 0){
-			return	<div className="error__noData">
-					You are a company with no employee
-				</div>
-			}
-		if(sortedDataLength === 0){
-		return	<div className="error__noData">
-				No match found, sorry !
-			</div>
+		if (totalDataLength === 0) {
+			return <div className="error__noData">You are a company with no employee</div>;
+		}
+		if (sortedDataLength === 0) {
+			return <div className="error__noData">No match found, sorry !</div>;
 		}
 		return data.map((item, index) => (
 			<tr key={index} className="table__row">
@@ -78,7 +72,7 @@ function Table() {
 			<h2 className="table__title">Current Employees</h2>
 			<section className="topSection__table">
 				<div className="entry">
-					<Dropdown label="Show" name="entries" value={entry} list={entriesValue} setInput={setEntry} />
+					<Dropdown label="Show" name="entries" value={itemsperpage} list={entriesValue} setInput={setItemsPerPage} />
 					entries
 				</div>
 				<Search value={query} setQuery={setQuery} />
@@ -95,7 +89,7 @@ function Table() {
 				</div>
 				<Pagination
 					dataLength={sortedDataLength}
-					pageSize={entry}
+					pageSize={itemsperpage}
 					currentPage={currentPage}
 					setCurrentPage={setCurrentPage}
 				/>

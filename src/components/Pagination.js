@@ -9,6 +9,7 @@ function Pagination({ dataLength, pageSize, currentPage, setCurrentPage }) {
 	//ceil to ensure we are reserving an extra page for remaining data
 	const totalPages = dataLength === 0 ? Math.ceil(1 / pageSize) : Math.ceil(dataLength / pageSize);
 
+	//to avoid problem like: we are on page 3 (current page 3) and number of page change to 1 (we stay on page 3/1)
 	if (totalPages === 1) {
 		setCurrentPage(1);
 	}
