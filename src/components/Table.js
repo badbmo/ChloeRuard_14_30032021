@@ -2,7 +2,7 @@ import React from "react";
 import "../style/table.css";
 import { useState } from "react";
 import Search from "./Search";
-import Dropdown from "./Dropdown";
+import Entries from "./Entries";
 import Pagination from "./Pagination";
 import { tableHeadData } from "../utils/const/tableHeadData";
 import { bodyData } from "../utils/const/mockedData";
@@ -19,6 +19,10 @@ function Table() {
 	const [query, setQuery] = useState("");
 	const [sortedField, setSortedField] = useState(null);
 	console.log(sortedField);
+
+	const resetCurrentPage =() =>{
+		setCurrentPage(1);
+	}
 
 	const sortingData = () => {
 		if (sortedField !== null) {
@@ -117,8 +121,7 @@ function Table() {
 			<h2 className="table__title">Current Employees</h2>
 			<section className="topSection__table">
 				<div className="entry">
-					<Dropdown label="Show" name="entries" value={itemsperpage} list={entriesValue} setInput={setItemsPerPage} />
-					entries
+					<Entries label="Show" name="entries" value={itemsperpage} list={entriesValue} setInput={setItemsPerPage} bonusFunction={resetCurrentPage}/>
 				</div>
 				<Search value={query} setQuery={setQuery} />
 			</section>
