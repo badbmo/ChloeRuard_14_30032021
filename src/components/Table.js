@@ -20,13 +20,18 @@ function Table() {
 	const [sortedField, setSortedField] = useState(null);
 	console.log(sortedField);
 
-	const resetCurrentPage =() =>{
+	const resetCurrentPage = () => {
 		setCurrentPage(1);
-	}
+	};
 
 	const sortingData = () => {
 		if (sortedField !== null) {
 			filteredData.sort((a, b) => {
+				if (sortedField.name === "zipCode") {
+					return sortedField.direction === "ascending"
+						? a[sortedField.name] - b[sortedField.name]
+						: b[sortedField.name] - a[sortedField.name];
+				}
 				if (a[sortedField.name] < b[sortedField.name]) {
 					return sortedField.direction === "ascending" ? -1 : 1;
 				}
@@ -65,7 +70,7 @@ function Table() {
 
 	const getDirection = (headCell) => {
 		if (sortedField === null) {
-			return ' sorting';
+			return " sorting";
 		}
 		return headCell === sortedField.name ? " sorting-" + sortedField.direction : " sorting";
 	};
@@ -121,7 +126,14 @@ function Table() {
 			<h2 className="table__title">Current Employees</h2>
 			<section className="topSection__table">
 				<div className="entry">
-					<Entries label="Show" name="entries" value={itemsperpage} list={entriesValue} setInput={setItemsPerPage} bonusFunction={resetCurrentPage}/>
+					<Entries
+						label="Show"
+						name="entries"
+						value={itemsperpage}
+						list={entriesValue}
+						setInput={setItemsPerPage}
+						bonusFunction={resetCurrentPage}
+					/>
 				</div>
 				<Search value={query} setQuery={setQuery} />
 			</section>
