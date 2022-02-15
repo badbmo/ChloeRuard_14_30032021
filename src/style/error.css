@@ -1,0 +1,57 @@
+.error {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.error__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.error__title {
+	font-weight: 700;
+	font-size: 6rem;
+	line-height: 8.5rem;
+	color: #6e8510;
+}
+
+@media screen and (min-width: 768px) {
+	.error__title {
+		font-size: 12rem;
+		line-height: 20rem;
+	}
+}
+
+.error__info {
+	font-weight: 500;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+	text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+	.error__info {
+		font-size: 2.25rem;
+		line-height: 3rem;
+	}
+}
+
+.error__link {
+	color: inherit;
+	font-weight: 500;
+	font-size: 1rem;
+	margin-top: 5vh;
+}
+
+@media screen and (min-width: 768px) {
+	.error__link {
+		font-size: 1.5rem;
+	}
+}
+
+.error__link:hover {
+	color: #6e8510;
+}
