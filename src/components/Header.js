@@ -16,10 +16,10 @@ function Header() {
 				<h1 className="header__title">HRnet</h1>
 			</Link>
 			<nav className="nav">
-				<NavLink exact className="nav__option" to="/">
+				<NavLink end className="nav__option" to="/">
 					Home
 				</NavLink>
-				<NavLink exact className="nav__option" to="/employee-list">
+				<NavLink end className="nav__option" to="/employee-list">
 					View Current Employees
 				</NavLink>
 			</nav>
