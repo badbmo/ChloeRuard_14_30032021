@@ -33,6 +33,11 @@ function Table() {
 						? a[sortedField.name] - b[sortedField.name]
 						: b[sortedField.name] - a[sortedField.name];
 				}
+				if (sortedField.name === "startDate" || "birthDate") {
+					return sortedField.direction === "ascending"
+						? new Date(a[sortedField.name]) - new Date(b[sortedField.name])
+						: new Date(b[sortedField.name]) - new Date(a[sortedField.name]);
+				}
 				if (a[sortedField.name] < b[sortedField.name]) {
 					return sortedField.direction === "ascending" ? -1 : 1;
 				}
