@@ -45,5 +45,5 @@ export default function useSortData(data, config = null) {
 		setSortedField({ name: headCellClicked, direction });
 	};
 
-	return { data: sortedItems, requestSort, sortedField };
+	return { sortedData: sortedItems, requestSort, sortedField };
 }
