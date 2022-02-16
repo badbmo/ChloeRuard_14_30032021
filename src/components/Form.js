@@ -33,7 +33,6 @@ function Form() {
 
 	//the order here is important !
 	const employee = { firstName, lastName, startDate, department, birthDate, street, city, stateShort, zipCode };
-	console.log(employee);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
