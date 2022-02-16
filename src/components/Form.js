@@ -5,7 +5,8 @@ import { stateList } from "../utils/const/stateList";
 import Dropdown from "./Dropdown";
 import Input from "./Input";
 import Modal from "./Modal";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../utils/context/dataContext";
 
 /**
  * Form Component to create employee
@@ -24,6 +25,8 @@ function Form() {
 	const [department, setDepartment] = useState(departmentList[0].name);
 	const [modal, setModal] = useState(false);
 
+	const {addData} = useContext(DataContext);
+
 	const getStateAbbreviation = (stateLong) => {
 		const selectedState = stateList.find((element) => element.name === stateLong);
 		return selectedState.abbreviation;
@@ -39,6 +42,7 @@ function Form() {
 		console.log("Employee Created!", employee);
 		handleModal();
 		refreshForm();
+		addData(employee);
 	};
 
 	const handleModal = () => {
