@@ -27,7 +27,7 @@ function Entries({ label, name, list, value, setInput, actionOnChange }) {
 				name={name}
 				value={value}
 				onChange={(e) => {
-					setInput(e.target.value);
+					setInput(parseInt(e.target.value));
 					actionOnChange();
 				}}
 			>
