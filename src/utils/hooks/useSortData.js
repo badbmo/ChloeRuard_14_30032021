@@ -26,7 +26,6 @@ export default function useSortData(data, config = null) {
 				// 		: new Date(b[sortedField.name]) - new Date(a[sortedField.name]);
 				// }
 				if (a[sortedField.name].toLowerCase().trim() < b[sortedField.name].toLowerCase().trim()) {
-					console.log(a[sortedField.name]);
 					return sortedField.direction === "ascending" ? -1 : 1;
 				}
 				if (a[sortedField.name].toLowerCase().trim() > b[sortedField.name].toLowerCase().trim()) {

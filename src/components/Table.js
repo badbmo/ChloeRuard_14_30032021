@@ -102,7 +102,7 @@ function Table() {
 						actionOnChange={resetCurrentPage}
 					/>
 				</div>
-				<Search value={query} setQuery={setQuery} />
+				<Search value={query} setQuery={setQuery} actionOnChange={resetCurrentPage}/>
 			</section>
 			<table className="table">
 				<thead>
