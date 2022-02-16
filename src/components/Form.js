@@ -24,14 +24,16 @@ function Form() {
 	const [department, setDepartment] = useState(departmentList[0].name);
 	const [modal, setModal] = useState(false);
 
-	const getStateAbbreviation = () => {
-		const selectedState = stateList.find((element) => element.name === state);
+	const getStateAbbreviation = (stateLong) => {
+		const selectedState = stateList.find((element) => element.name === stateLong);
 		return selectedState.abbreviation;
 	};
 
-	const stateShort = getStateAbbreviation();
+	const stateShort = getStateAbbreviation(state);
 
-	const employee = { firstName, lastName, birthDate, startDate, street, city, state, stateShort, zipCode, department };
+	//the order here is important !
+	const employee = { firstName, lastName, startDate, department, birthDate, street, city, stateShort, zipCode };
+	console.log(employee);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

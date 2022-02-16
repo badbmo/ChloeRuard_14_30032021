@@ -1,17 +1,18 @@
 import React from "react";
 
 /**
- * Dropdown Component for form
+ * Entries Component for form
  * @param {string} label name of label
  * @param {string} name name of select and htmlFor of label
  * @param {Object[]} list array of objects
  * @param {function} setInput function to get what is put in input
+ * @param {function} actionOnChange additional function to use onChange
  * @param {string} value value of what is put in input
 
  * @returns {JSX} React component
  */
 
-function Entries({ label, name, list, value, setInput, bonusFunction }) {
+function Entries({ label, name, list, value, setInput, actionOnChange }) {
 	const createOptionsState = () => {
 		return list.map((item, index) => {
 			return <option key={index}>{item.name}</option>;
@@ -27,7 +28,7 @@ function Entries({ label, name, list, value, setInput, bonusFunction }) {
 				value={value}
 				onChange={(e) => {
 					setInput(e.target.value);
-					bonusFunction();
+					actionOnChange();
 				}}
 			>
 				{createOptionsState()}

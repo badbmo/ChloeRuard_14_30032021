@@ -1,7 +1,7 @@
 import React from "react";
 
 /**
- * Dropdown Component for form
+ * Input Component for form
  * @param {string} label name of label
  * @param {string} id name of select and htmlFor of label
  * @param {string} type type of input

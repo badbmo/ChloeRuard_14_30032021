@@ -3,6 +3,9 @@ import "../style/modal.css";
 
 /**
  * Modal Component
+ * @param {string} type type of input
+ * @param {function} setInput function to get what is put in input
+ 
  * @returns {JSX} React component
  */
 
