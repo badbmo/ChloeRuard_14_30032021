@@ -20,6 +20,7 @@ function Table() {
 	const [sortedField, setSortedField] = useState(null);
 	console.log(sortedField);
 
+	//to avoid problem like: we are on current page 3/3 and number of page change to 1 (we stay on page 3/1)
 	const resetCurrentPage = () => {
 		setCurrentPage(1);
 	};
@@ -43,9 +44,7 @@ function Table() {
 		}
 	};
 
-	//filter totalData (array of object)
-	//Object.keys(object) get all the keys of one object as an array
-	//k as keys string to iterate on object: object["firstName"], object["lastName"] ...
+	//filter totalData (array of object), Object.keys(object) get all the keys of one object as an array, k as keys string to iterate on object: object["firstName"], object["lastName"] ...
 	const filteredData = bodyData.filter((object) => {
 		return Object.keys(object).some((k) => object[k].toLowerCase().includes(query.toLowerCase().trim()));
 	});
@@ -76,16 +75,13 @@ function Table() {
 	};
 
 	const tableHead = (list) => {
-		return list.map((item, index) => {
-			return (
-				<th className={"head__cell cell-" + index + getDirection(item.id)} key={index} onClick={() => requestSort(item.id)}>
-					{item.name}
-				</th>
-			);
-		});
+		return list.map((item, index) => (
+			<th className={"head__cell cell-" + index + getDirection(item.id)} key={index} onClick={() => requestSort(item.id)}>
+				{item.name}
+			</th>
+		));
 	};
 
-	// const dataOrder = ["firstName", "lastName", "startDate", "department", "birthDate", "street", "city", "stateShort", ]
 	const tableBody = (data) => {
 		if (totalDataLength === 0) {
 			return (
@@ -106,17 +102,12 @@ function Table() {
 			);
 		}
 
+		//filter data (array of object), Object.values(object) get all the values of one object as an array, v as key to iterate on object: "value 1", "value 2" ...
 		return data.map((item, index) => (
 			<tr key={index} className="table__row">
-				<td className="row__cell cell-0">{item.firstName}</td>
-				<td className="row__cell">{item.lastName}</td>
-				<td className="row__cell">{item.startDate}</td>
-				<td className="row__cell">{item.department}</td>
-				<td className="row__cell">{item.birthDate}</td>
-				<td className="row__cell">{item.street}</td>
-				<td className="row__cell">{item.city}</td>
-				<td className="row__cell">{item.stateShort}</td>
-				<td className="row__cell">{item.zipCode}</td>
+				{Object.values(item).map((v) => (
+					<td className="row__cell">{v}</td>
+				))}
 			</tr>
 		));
 	};
@@ -132,7 +123,7 @@ function Table() {
 						value={itemsperpage}
 						list={entriesValue}
 						setInput={setItemsPerPage}
-						bonusFunction={resetCurrentPage}
+						actionOnChange={resetCurrentPage}
 					/>
 				</div>
 				<Search value={query} setQuery={setQuery} />
