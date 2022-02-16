@@ -20,7 +20,7 @@ function Form() {
 	const [startDate, setStartDate] = useState("");
 	const [street, setStreet] = useState("");
 	const [city, setCity] = useState("");
-	const [state, setState] = useState(stateList[0].name);
+	const [stateLong, setStateLong] = useState(stateList[0].name);
 	const [zipCode, setZipCode] = useState("");
 	const [department, setDepartment] = useState(departmentList[0].name);
 	const [modal, setModal] = useState(false);
@@ -32,10 +32,10 @@ function Form() {
 		return selectedState.abbreviation;
 	};
 
-	const stateShort = getStateAbbreviation(state);
+	const state = getStateAbbreviation(stateLong);
 
 	//the order here is important !
-	const employee = { firstName, lastName, startDate, department, birthDate, street, city, stateShort, zipCode };
+	const employee = { firstName, lastName, startDate, department, birthDate, street, city, state, zipCode };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -56,7 +56,7 @@ function Form() {
 		setStartDate("");
 		setStreet("");
 		setCity("");
-		setState(stateList[0].name);
+		setStateLong(stateList[0].name);
 		setZipCode("");
 		setDepartment(departmentList[0].name);
 	};
@@ -77,7 +77,7 @@ function Form() {
 					<Input label="Street" id="street" type="text" value={street} setInput={setStreet} />
 					<Input label="City" id="city" type="text" value={city} setInput={setCity} />
 
-					<Dropdown label="State" name="state" list={stateList} value={state} setInput={setState} />
+					<Dropdown label="State" name="state" list={stateList} value={stateLong} setInput={setStateLong} />
 
 					<Input label="Zip Code" id="zip-code" type="number" value={zipCode} setInput={setZipCode} />
 				</fieldset>
