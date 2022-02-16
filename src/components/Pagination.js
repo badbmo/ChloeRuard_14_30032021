@@ -2,6 +2,10 @@ import "../style/pagination.css";
 
 /**
  * Pagination component to navigate between pages
+ * @param {number} dataLength length of data used
+ * @param {number} pageSize number of items per page
+ * @param {number} currentPage number of the current page
+ * @param {function} setCurrentPage function to change current page (next one or previous one)
  * @returns {JSX} React component
  */
 
