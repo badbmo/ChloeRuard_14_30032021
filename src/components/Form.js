@@ -25,7 +25,7 @@ function Form() {
 	const [department, setDepartment] = useState(departmentList[0].name);
 	const [modal, setModal] = useState(false);
 
-	const {addData} = useContext(DataContext);
+	const { addData } = useContext(DataContext);
 
 	const getStateAbbreviation = (stateLong) => {
 		const selectedState = stateList.find((element) => element.name === stateLong);
@@ -66,16 +66,30 @@ function Form() {
 			<h2 className="form__title">Create Employee</h2>
 
 			<form className="form__employee" onSubmit={handleSubmit}>
-				<Input label="First Name" id="first-name" type="text" value={firstName} setInput={setFirstName} />
-				<Input label="Last Name" id="last-name" type="text" value={lastName} setInput={setLastName} />
+				<Input
+					label="First Name"
+					id="first-name"
+					type="text"
+					value={firstName}
+					setInput={setFirstName}
+					pattern={"^[A-Za-z ]+$"}
+				/>
+				<Input
+					label="Last Name"
+					id="last-name"
+					type="text"
+					value={lastName}
+					setInput={setLastName}
+					pattern={"^[A-Za-z ]+$"}
+				/>
 				<Input label="Date of Birth" id="date-of-birth" type="text" value={birthDate} setInput={setBirthDate} />
 				<Input label="Start Date" id="start-date" type="text" value={startDate} setInput={setStartDate} />
 
 				<fieldset className="form__address">
 					<legend className="address__legend">Address</legend>
 
-					<Input label="Street" id="street" type="text" value={street} setInput={setStreet} />
-					<Input label="City" id="city" type="text" value={city} setInput={setCity} />
+					<Input label="Street" id="street" type="text" value={street} setInput={setStreet} pattern={"^[A-Za-z0-9 ]+$"} />
+					<Input label="City" id="city" type="text" value={city} setInput={setCity} pattern={"^[A-Za-z ]+$"} />
 
 					<Dropdown label="State" name="state" list={stateList} value={stateLong} setInput={setStateLong} />
 

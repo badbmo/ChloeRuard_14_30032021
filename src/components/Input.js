@@ -10,11 +10,17 @@ import React from "react";
  * @returns {JSX} React component
  */
 
-function Input({ label, id, type, value, setInput }) {
+function Input({ label, id, type, value, setInput, pattern }) {
 	return (
 		<React.Fragment>
 			<label htmlFor={id}>{label}</label>
-			<input id={id} type={type} value={value} onChange={(e) => setInput(e.target.value)} />
+			<input
+				id={id}
+				type={type}
+				value={value}
+				pattern={pattern}
+				onChange={(e) => setInput(e.target.value)}
+			/>
 		</React.Fragment>
 	);
 }
