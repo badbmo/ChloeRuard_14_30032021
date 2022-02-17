@@ -33,9 +33,10 @@ function Form() {
 	};
 
 	const state = getStateAbbreviation(stateLong);
+	const id = Date.now().toString();
 
 	//the order here is important !
-	const employee = { firstName, lastName, startDate, department, birthDate, street, city, state, zipCode };
+	const employee = { firstName, lastName, startDate, department, birthDate, street, city, state, zipCode, id };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

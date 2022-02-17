@@ -20,7 +20,7 @@ function Table() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [query, setQuery] = useState("");
 
-	const {originalData} = useContext(DataContext);
+	const { originalData } = useContext(DataContext);
 
 	//to avoid problem like: we are on current page 3/3 and number of page change to 1 (we stay on page 3/1)
 	const resetCurrentPage = () => {
@@ -79,14 +79,17 @@ function Table() {
 			);
 		}
 
-		//filter data (array of object), Object.values(object) get all the values of one object as an array, v as key to iterate on object: "value 1", "value 2" ...
-		return data.map((item, index) => (
-			<tr key={index} className="table__row">
-				{Object.values(item).map((v, index) => (
-					<td key={index} className="row__cell">
-						{v}
-					</td>
-				))}
+		return data.map((item) => (
+			<tr key={item.id} className="table__row">
+				<td className="row__cell">{item.firstName}</td>
+				<td className="row__cell">{item.lastName}</td>
+				<td className="row__cell">{item.startDate}</td>
+				<td className="row__cell">{item.department}</td>
+				<td className="row__cell">{item.birthDate}</td>
+				<td className="row__cell">{item.street}</td>
+				<td className="row__cell">{item.city}</td>
+				<td className="row__cell">{item.state}</td>
+				<td className="row__cell">{item.zipCode}</td>
 			</tr>
 		));
 	};
@@ -105,7 +108,7 @@ function Table() {
 						actionOnChange={resetCurrentPage}
 					/>
 				</div>
-				<Search value={query} setQuery={setQuery} actionOnChange={resetCurrentPage}/>
+				<Search value={query} setQuery={setQuery} actionOnChange={resetCurrentPage} />
 			</section>
 			<table className="table">
 				<thead>

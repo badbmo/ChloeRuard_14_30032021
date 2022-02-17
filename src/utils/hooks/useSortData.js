@@ -15,16 +15,6 @@ export default function useSortData(data, config = null) {
 		let sortableItems = [...data];
 		if (sortedField !== null) {
 			sortableItems.sort((a, b) => {
-				// if (sortedField.name === "zipCode") {
-				// 	return sortedField.direction === "ascending"
-				// 		? a[sortedField.name] - b[sortedField.name]
-				// 		: b[sortedField.name] - a[sortedField.name];
-				// }
-				// if (sortedField.name === "startDate" || "birthDate") {
-				// 	return sortedField.direction === "ascending"
-				// 		? new Date(a[sortedField.name]) - new Date(b[sortedField.name])
-				// 		: new Date(b[sortedField.name]) - new Date(a[sortedField.name]);
-				// }
 				if (a[sortedField.name].toLowerCase().trim() < b[sortedField.name].toLowerCase().trim()) {
 					return sortedField.direction === "ascending" ? -1 : 1;
 				}
