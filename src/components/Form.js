@@ -7,6 +7,7 @@ import Input from "./Input";
 import Modal from "./Modal";
 import { useState, useContext } from "react";
 import { DataContext } from "../utils/context/dataContext";
+import DatePicker from "datepicker-react-by-badbmo";
 
 /**
  * Form Component to create employee
@@ -16,8 +17,6 @@ import { DataContext } from "../utils/context/dataContext";
 function Form() {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
-	const [birthDate, setBirthDate] = useState("");
-	const [startDate, setStartDate] = useState("");
 	const [street, setStreet] = useState("");
 	const [city, setCity] = useState("");
 	const [stateLong, setStateLong] = useState(stateList[0].name);
@@ -35,11 +34,12 @@ function Form() {
 	const state = getStateAbbreviation(stateLong);
 	const id = Date.now().toString();
 
-	//the order here is important !
-	const employee = { firstName, lastName, startDate, department, birthDate, street, city, state, zipCode, id };
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const startDate = document.getElementById("start-date").value;
+		const birthDate = document.getElementById("date-of-birth").value;
+		//the order here is important !
+		const employee = { firstName, lastName, startDate, department, birthDate, street, city, state, zipCode, id };
 		console.log("Employee Created!", employee);
 		handleModal();
 		refreshForm();
@@ -53,8 +53,6 @@ function Form() {
 	const refreshForm = () => {
 		setFirstName("");
 		setLastName("");
-		setBirthDate("");
-		setStartDate("");
 		setStreet("");
 		setCity("");
 		setStateLong(stateList[0].name);
@@ -83,8 +81,8 @@ function Form() {
 					setInput={setLastName}
 					pattern={"^[A-Za-z ]+$"}
 				/>
-				<Input label="Date of Birth" id="date-of-birth" type="text" value={birthDate} setInput={setBirthDate} />
-				<Input label="Start Date" id="start-date" type="text" value={startDate} setInput={setStartDate} />
+				<DatePicker idInput="date-of-birth" nameOfLabel="Date of Birth" />
+				<DatePicker idInput="start-date" nameOfLabel="Start Date" />
 
 				<fieldset className="form__address">
 					<legend className="address__legend">Address</legend>
