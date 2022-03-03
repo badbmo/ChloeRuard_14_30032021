@@ -15,7 +15,8 @@
 
 .header__logo {
 	width: 10rem;
-	height: 10rem;
+	height: 100%;
+	max-height: 11rem;
 	grid-column: 1;
 	grid-row: 1;
 	opacity: 0.3;
