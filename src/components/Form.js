@@ -24,6 +24,10 @@ function Form() {
 	const [department, setDepartment] = useState(departmentList[0].name);
 	const [modal, setModal] = useState(false);
 
+	const today = new Date();
+	const [startDateDateFormat, setStartDate] = useState(today);
+	const [birthDateDateFormat, setBirthDate] = useState(today);
+
 	const { addData } = useContext(DataContext);
 
 	const getStateAbbreviation = (stateLong) => {
@@ -32,13 +36,13 @@ function Form() {
 	};
 
 	const state = getStateAbbreviation(stateLong);
+	const startDate = new Date(startDateDateFormat).toLocaleDateString();
+	const birthDate = new Date(birthDateDateFormat).toLocaleDateString();
 	const id = Date.now().toString();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const startDate = document.getElementById("start-date").value;
-		const birthDate = document.getElementById("date-of-birth").value;
-		//the order here is important !
+		//the order here is important ! The name is also important as employee object is used in Table
 		const employee = { firstName, lastName, startDate, department, birthDate, street, city, state, zipCode, id };
 		console.log("Employee Created!", employee);
 		handleModal();
@@ -58,6 +62,7 @@ function Form() {
 		setStateLong(stateList[0].name);
 		setZipCode("");
 		setDepartment(departmentList[0].name);
+		// we do not set birthDate and startDate on today: we can't change the value of input, so values would be !=
 	};
 
 	return (
@@ -81,8 +86,8 @@ function Form() {
 					setInput={setLastName}
 					pattern={"^[A-Za-z ]+$"}
 				/>
-				<DatePicker idInput="date-of-birth" nameOfLabel="Date of Birth" />
-				<DatePicker idInput="start-date" nameOfLabel="Start Date" />
+				<DatePicker idInput="date-of-birth" nameOfLabel="Date of Birth" getSelectedDate={setBirthDate} />
+				<DatePicker idInput="start-date" nameOfLabel="Start Date" getSelectedDate={setStartDate} />
 
 				<fieldset className="form__address">
 					<legend className="address__legend">Address</legend>
