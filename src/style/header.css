@@ -14,7 +14,8 @@
 }
 
 .header__logo {
-	max-width: 10rem;
+	width: 10rem;
+	height: auto;
 	grid-column: 1;
 	grid-row: 1;
 	opacity: 0.3;
@@ -45,11 +46,11 @@
 }
 
 .nav__option:hover {
-	background-color: #93ad18;
-	color: white;
+	background-color: #6e8510;
+	color: black;
 }
 
 .nav .active {
 	background-color: #93ad18;
-	color: white;
+	color: black;
 }
